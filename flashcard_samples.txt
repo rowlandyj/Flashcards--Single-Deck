@@ -7,7 +7,7 @@ and
 Designates code that must be run unconditionally at the beginning of the program before any other.
 BEGIN
  
-Delimits a "begin" block of code, which can allow the use of while and until in modifier position with multi-line statements.
+Delimits a 'begin' block of code, which can allow the use of while and until in modifier position with multi-line statements.
 begin
  
 Gives an unconditional termination to a code block, and is usually placed with an argument.
