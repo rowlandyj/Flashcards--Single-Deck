@@ -32,25 +32,17 @@ class FlashCardController
   end
 
   def pick_random_card
-    chosen_card = @cards.sample
+    @cards.sample
     @chosen_def = chosen_card.definition
     @chosen_word = chosen_card.word
   end
 
   def check_guess(answer_string)
-    if answer_string == @chosen_word
-      return true
-    else
-      false
-    end
-  end
+    answer_string == @chosen_word
+   end
 
   def to_s
-    @cards.each do |card|
-      puts "Description: #{card.definition}"
-      puts "Answer: #{card.word}"
-      puts
-    end
+    @cards.each {|card| puts "Description:\n#{card.definition}\nAnswer: #{card.word}\n\n"}
   end
 end
 
