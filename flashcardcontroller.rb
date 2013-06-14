@@ -1,3 +1,7 @@
+require_relative 'flashcard_samples.txt'
+require_relative 'flashcards.rb'
+require_relative 'flashcardgame.rb'
+
 class FlashCardController
   attr_reader :cards
 
@@ -10,13 +14,12 @@ class FlashCardController
     file = File.open(@filename,"r")
     data = file.read
     file.close
+    all_data = []
 
     data = data.split("\n")
     data.delete(" ")
 
-    data.each do |string|
-      @cards << string
-    end
+    all_data = Array.new((data.length/2)) {data.shift(2)}
   end
 
   def to_s
