@@ -1,8 +1,7 @@
 require_relative 'flashcards.rb'
-require_relative 'flashcardgame.rb'
 
 class FlashCardController
-  attr_reader :cards, :chosen_word, :chosen_def
+  attr_reader :cards, :chosen_def, :chosen_word
 
   def initialize(filename)
     @cards = []
@@ -32,6 +31,7 @@ class FlashCardController
   end
 
   def pick_random_card
+    get_cards
     chosen_card = @cards.sample
     @chosen_def = chosen_card.definition
     @chosen_word = chosen_card.word
@@ -44,7 +44,6 @@ class FlashCardController
       false
     end
   end
-
   def to_s
     @cards.each do |line|
       puts line
@@ -54,7 +53,6 @@ end
 
 card = FlashCardController.new("flashcard_samples.txt")
 
-# card.load
-# card.get_cards
-# card.pick_random_card
+card.get_cards
+
 
