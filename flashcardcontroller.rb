@@ -32,7 +32,7 @@ class FlashCardController
   end
 
   def pick_random_card
-    @cards.sample
+    chosen_card = @cards.sample
     @chosen_def = chosen_card.definition
     @chosen_word = chosen_card.word
   end

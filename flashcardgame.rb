@@ -4,15 +4,17 @@ require_relative 'flashcardcontroller.rb'
 class FlashCardGame
 
   def initialize(deck)
-    @deck = deck  
+    @deck = deck
+    @exit = false 
   end
 
   def run
     welcome
-    print_definition
-    guess_loop
-    next_card_prompt
-    print_definition
+    until @exit
+      print_definition
+      guess_loop
+      next_card_prompt
+    end
   end
 
 private
@@ -33,22 +35,22 @@ private
   def guess_input
     puts "\n Guess: \n"
     word = gets.chomp
+    @exit = true if word == 'exit'
     return word
   end
 
   def guess_check
     if @deck.check_guess(guess_input)
-      puts "Correct"
+      puts "Correct" 
+      return true
     else
       puts "Sorry wrong answer, try again."
     end
   end
 
   def guess_loop
-      guess_input
-    unless @deck.check_guess(guess_input)
-      guess_check
-      guess_input
+    until guess_check
+      break if @exit
     end
   end
 
