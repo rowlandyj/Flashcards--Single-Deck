@@ -17,13 +17,13 @@ class FlashCardGame
 
 private
   def welcome
-    p "Welcome to Ruby Flash Cards.  To play, just enter the correct term for the each definition.  If you want to quit type in 'exit'.  Ready?  Go!"
+    puts "Welcome to Ruby Flash Cards.  To play, just enter the correct term for the each definition.  If you want to quit type in 'exit'.  Ready?  Go!"
   end
 
   def print_definition
-    p "Definition:"
+    puts "Definition:"
     pick_random_card
-    p @deck.chosen_def
+    puts @deck.chosen_def
   end
 
   def pick_random_card
@@ -37,7 +37,7 @@ private
   end
 
   def guess_check
-    if @deck.guess_check(guess_input)
+    if @deck.check_guess(guess_input)
       puts "Correct"
     else
       puts "Sorry wrong answer, try again."
@@ -45,9 +45,10 @@ private
   end
 
   def guess_loop
-    unless @deck.guess_check
       guess_input
+    unless @deck.check_guess(guess_input)
       guess_check
+      guess_input
     end
   end
 
@@ -57,5 +58,5 @@ private
 
 end
 
-game = FlashCardGame.new(FlashCardController.new(("flashcard_samples.txt")))
+game = FlashCardGame.new(FlashCardController.new("flashcard_samples.txt"))
 game.run
